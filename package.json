@@ -1,7 +1,7 @@
 {
-  "name": "sandbarwebsite",
+  "name": "thatSlackSignup",
   "version": "1.0.0",
-  "description": "",
+  "description": "Slack signup website for THAT Conference",
   "main": "index.js",
   "scripts": {
     "dev": "next ./src -p 8000",
@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "formik": "^1.5.1",
     "moment": "^2.24.0",
