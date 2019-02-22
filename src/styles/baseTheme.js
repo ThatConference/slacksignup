@@ -1,6 +1,6 @@
 const baseTheme = {
   colors: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#f4e9d6',
 
     primary: '#f5a637',
     secondary: '#6c757d',
@@ -14,10 +14,12 @@ const baseTheme = {
     orange: '#fd7e14',
     white: '#fff',
     black: '#393939',
+    brown: '#5e4530',
 
     fonts: {
       light: '#777',
-      dark: '#393939'
+      dark: '#8b7e64',
+      tan: '#f1e1c0'
     },
 
     social: {

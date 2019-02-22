@@ -3,8 +3,10 @@ import getConfig from 'next/config';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
+import { above, below } from '../utilities';
 
 const { serverRuntimeConfig } = getConfig();
+
 
 const SignUpForm = ({ className }) => (
   <div className={className}>
@@ -19,15 +21,15 @@ const SignUpForm = ({ className }) => (
         let errors = {};
 
         if (!values.email) {
-          errors.email = 'Required';
+          errors.email = 'Please fill in your email address.';
         } else if (
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
         ) {
-          errors.email = 'Invalid email address';
+          errors.email = 'Invalid email address.';
         }
 
-        !values.firstName && (errors.firstName = 'Required');
-        !values.lastName && (errors.lastName = 'Required');
+        !values.firstName && (errors.firstName = 'Please fill in your first name.');
+        !values.lastName && (errors.lastName = 'Please fill in your last name.');
 
         return errors;
       }}
@@ -68,8 +70,13 @@ const SignUpForm = ({ className }) => (
         status
       }) => (
         <Form onSubmit={handleSubmit}>
-          <div>
-            <label>First Name:</label>
+          <div className="form-logo">
+            <img src="/static/images/TC-Slack.png" alt="THAT Conference and Slack" />
+          </div>
+          <h1>Join THAT Slack!</h1>
+          <p>Fill out the form to get an invite to THAT Slack and be a part of the community year-round.</p>
+          <div class="form-group">
+            <label>First Name:<span class="required">*</span></label>
             <Field
               type="text"
               name="firstName"
@@ -77,11 +84,13 @@ const SignUpForm = ({ className }) => (
               onBlur={handleBlur}
               value={values.firstName}
             />
-            <ErrorMessage name="firstName" />
+            <span class="required">
+              <ErrorMessage name="firstName" />
+            </span>
           </div>
 
-          <div>
-            <label>Last Name:</label>
+          <div class="form-group">
+            <label>Last Name:<span class="required">*</span></label>
             <Field
               type="text"
               name="lastName"
@@ -89,11 +98,13 @@ const SignUpForm = ({ className }) => (
               onBlur={handleBlur}
               value={values.lastName}
             />
-            <ErrorMessage name="lastName" />
+            <span class="required">
+              <ErrorMessage name="lastName" />
+            </span>
           </div>
 
-          <div>
-            <label>Email:</label>
+          <div class="form-group">
+            <label>Email:<span class="required">*</span></label>
             <Field
               type="email"
               name="email"
@@ -101,23 +112,27 @@ const SignUpForm = ({ className }) => (
               onBlur={handleBlur}
               value={values.email}
             />
-            <ErrorMessage name="email" />
+            <span class="required">
+              <ErrorMessage name="email" />
+            </span>
           </div>
 
-          <div>
-            <label>Have you attended THAT Conference in the Past.</label>
-            <Field
-              type="checkBox"
-              name="isPastCamper"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              value={values.isPastCamper}
-            />
+          <div class="form-group">
+            <div class="checkbox">
+              <Field
+                type="checkbox"
+                name="isPastCamper"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.isPastCamper}
+              ></Field>
+              I have attended THAT Conference in the past.
+            </div>
           </div>
 
-          <div>
+          <div class="form-submit">
             <button type="submit" disabled={isSubmitting}>
-              Add Me!
+              Add Me to Slack!
             </button>
 
             {status && status.apiError && (
@@ -131,8 +146,91 @@ const SignUpForm = ({ className }) => (
 );
 
 export default styled(SignUpForm)`
+  margin: 4.5rem 0;
+  padding: 3rem 1.5rem;
+  width: 100%;
+  max-width: 495px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  border-radius: 2.5rem;
+  // Media Queries
+  ${above.sm`
+    margin: 7.5rem 0;
+    padding: 5rem 6rem 6rem;
+    border: 4px solid #e6d6bc;
+  `}
+
+  // Sub Elements
+  h1 {
+    margin-bottom: 0;
+    color: #627f78;
+    font-weight: bold;
+  }
+  p {
+    margin-top: 0;
+  }
+  form {
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+    width: 100%;
+
+    // Sub Elements
+    label {
+      padding-right: 15px;
+      display: block;
+      width: 100%;
+    }
+    input {
+      padding: 8px 6px;
+      width: 100%;
+      border: 1px solid #ccbda5;
+    }
+    .checkbox {
+      margin-left: 0;
+      // Sub  elements
+      label {
+        display: inline-block;
+        width: auto;
+      }
+      input {
+        margin-right: 10px;
+        width: auto;
+      }
+    }
+    .required {
+      color: red;
+    }
+  }
+
+  .form-submit {
+    // Sub Elements
+    button {
+      margin-top: 15px;
+      padding: 15px;
+      width: 100%;
+      background-color: #829641;
+      color: #f1e1c0;
+      font-size: 20px;
+      font-weight: 700;
+      border: none;
+      border-bottom: 5px solid #616a27;
+      cursor: pointer;
+      // Pseudos
+      &:focus, &:hover {
+        background-color: #798b3c;
+      }
+      &:active {
+        border: none;
+      }
+    }
+  }
+
+  .form-logo img {
+    max-width: 100%;
+  }
 `;

@@ -10,14 +10,15 @@ import Footer from './Footer';
 
 const StyledPage = styled.div`
   background: ${props => props.theme.colors.backgroundColor};
-  color: ${props => props.theme.colors.black};
+  color: ${props => props.theme.colors.fonts.dark};
 `;
 
 const CorePage = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;
+  background-color: #f4e9d6;
 `;
 
 const InnerPage = styled.div`
