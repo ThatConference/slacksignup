@@ -4,10 +4,11 @@
   "description": "Slack signup website for THAT Conference",
   "main": "index.js",
   "scripts": {
-    "dev": "next ./src -p 8000",
-    "build": "next build ./src",
-    "start": "next start ./src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next ./ -p 8000",
+    "build": "next build ./www",
+    "start": "next start ./www",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "now-build": "next build"
   },
   "author": "",
   "license": "MIT",

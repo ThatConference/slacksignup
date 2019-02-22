@@ -1,11 +1,8 @@
 import nprogress from 'nprogress';
-import getConfig from 'next/config';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React from 'react';
 import styled from 'styled-components';
 import { above, below } from '../utilities';
-
-const { serverRuntimeConfig } = getConfig();
 
 const SignUpForm = ({ className }) => (
   <div className={className}>
@@ -51,7 +48,7 @@ const SignUpForm = ({ className }) => (
             Authorization: `Bearer TOKEN`
           }
         };
-
+        console.log(process.env.special);
         fetch('AIRTABLE URL HERE', options)
           .then(response => response.json())
           .then(
