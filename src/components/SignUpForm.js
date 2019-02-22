@@ -119,14 +119,16 @@ const SignUpForm = ({ className }) => (
 
           <div class="form-group">
             <div class="checkbox">
-              <Field
-                type="checkbox"
-                name="isPastCamper"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.isPastCamper}
-              ></Field>
-              I have attended THAT Conference in the past.
+              <label>
+                <Field
+                  type="checkbox"
+                  name="isPastCamper"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.isPastCamper}
+                ></Field>
+                I have attended THAT Conference in the past.
+              </label>
             </div>
           </div>
 
