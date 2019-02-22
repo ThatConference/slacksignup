@@ -3,8 +3,7 @@
   "name": "thatSlack",
   "alias": "thatslack.thatconference.com",
   "env": {
-    "AIRTABLE_TOKEN": "@AIRTABLE_TOKEN",
-    "AIRTABLE_URL": ""
+    "AIRTABLE_URL": "https://api.airtable.com/v0/appWxXiBPk6EjcUND/Requsts"
   },
   "builds": [
     { "src": "www/package.json", "use": "@now/next" },
