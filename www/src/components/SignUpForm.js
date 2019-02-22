@@ -7,7 +7,6 @@ import { above, below } from '../utilities';
 
 const { serverRuntimeConfig } = getConfig();
 
-
 const SignUpForm = ({ className }) => (
   <div className={className}>
     <Formik
@@ -28,8 +27,10 @@ const SignUpForm = ({ className }) => (
           errors.email = 'Invalid email address.';
         }
 
-        !values.firstName && (errors.firstName = 'Please fill in your first name.');
-        !values.lastName && (errors.lastName = 'Please fill in your last name.');
+        !values.firstName &&
+          (errors.firstName = 'Please fill in your first name.');
+        !values.lastName &&
+          (errors.lastName = 'Please fill in your last name.');
 
         return errors;
       }}
@@ -71,12 +72,20 @@ const SignUpForm = ({ className }) => (
       }) => (
         <Form onSubmit={handleSubmit}>
           <div className="form-logo">
-            <img src="/static/images/TC-Slack.png" alt="THAT Conference and Slack" />
+            <img
+              src="/static/images/TC-Slack.png"
+              alt="THAT Conference and Slack"
+            />
           </div>
           <h1>Join THAT Slack!</h1>
-          <p>Fill out the form to get an invite to THAT Slack and be a part of the community year-round.</p>
-          <div class="form-group">
-            <label>First Name:<span class="required">*</span></label>
+          <p>
+            Fill out the form to get an invite to THAT Slack and be a part of
+            the community year-round.
+          </p>
+          <div className="form-group">
+            <label>
+              First Name:<span className="required">*</span>
+            </label>
             <Field
               type="text"
               name="firstName"
@@ -84,13 +93,15 @@ const SignUpForm = ({ className }) => (
               onBlur={handleBlur}
               value={values.firstName}
             />
-            <span class="required">
+            <span className="required">
               <ErrorMessage name="firstName" />
             </span>
           </div>
 
-          <div class="form-group">
-            <label>Last Name:<span class="required">*</span></label>
+          <div className="form-group">
+            <label>
+              Last Name:<span className="required">*</span>
+            </label>
             <Field
               type="text"
               name="lastName"
@@ -98,13 +109,15 @@ const SignUpForm = ({ className }) => (
               onBlur={handleBlur}
               value={values.lastName}
             />
-            <span class="required">
+            <span className="required">
               <ErrorMessage name="lastName" />
             </span>
           </div>
 
-          <div class="form-group">
-            <label>Email:<span class="required">*</span></label>
+          <div className="form-group">
+            <label>
+              Email:<span className="required">*</span>
+            </label>
             <Field
               type="email"
               name="email"
@@ -112,13 +125,13 @@ const SignUpForm = ({ className }) => (
               onBlur={handleBlur}
               value={values.email}
             />
-            <span class="required">
+            <span className="required">
               <ErrorMessage name="email" />
             </span>
           </div>
 
-          <div class="form-group">
-            <div class="checkbox">
+          <div className="form-group">
+            <div className="checkbox">
               <label>
                 <Field
                   type="checkbox"
@@ -126,13 +139,13 @@ const SignUpForm = ({ className }) => (
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.isPastCamper}
-                ></Field>
+                />
                 I have attended THAT Conference in the past.
               </label>
             </div>
           </div>
 
-          <div class="form-submit">
+          <div className="form-submit">
             <button type="submit" disabled={isSubmitting}>
               Add Me to Slack!
             </button>
@@ -223,7 +236,8 @@ export default styled(SignUpForm)`
       border-bottom: 5px solid #616a27;
       cursor: pointer;
       // Pseudos
-      &:focus, &:hover {
+      &:focus,
+      &:hover {
         background-color: #798b3c;
       }
       &:active {

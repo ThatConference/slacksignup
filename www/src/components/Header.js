@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-
 const Header = ({ className }) => (
   <header className={className}>
-    <div class="header-container">
-      <a href="//www.thatconference.com"><img class="header-logo" src="/static/images/TC-Head-Logo.png" alt="THAT Conference"/></a>
+    <div className="header-container">
+      <a href="//www.thatconference.com">
+        <img
+          className="header-logo"
+          src="/static/images/TC-Head-Logo.png"
+          alt="THAT Conference"
+        />
+      </a>
     </div>
   </header>
 );
