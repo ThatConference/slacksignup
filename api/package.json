@@ -4,14 +4,39 @@
   "description": "Slack signup api for THAT Conference",
   "main": "index.js",
   "scripts": {
-    "dev": "next ./src -p 8000",
-    "build": "next build ./src",
-    "start": "next start ./src",
+    "dev": "",
+    "build": "",
+    "start": "",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "keywords": [
+    "Slack, node, web, nextjs, now, react, that conference"
+  ],
+  "homepage": "https://thatslack.thatconference.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThatConference/SlackSignupWebsite.git"
+  },
+  "contributors": [
+    {
+      "name": "Clark Sell",
+      "email": "clark@thatconference.com"
+    },
+    {
+      "name": "Mat Bolwerk",
+      "email": "mat@thatconference.com"
+    },
+    {
+      "name": "Sara Gibbons",
+      "email": "sara@thatconference.com"
+    }
+  ],
+  "engines": {
+    "node": "^10"
+  },
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",

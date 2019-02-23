@@ -44,12 +44,11 @@ const SignUpForm = ({ className }) => (
           method: 'POST',
           body: JSON.stringify(payload),
           headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer TOKEN`
+            'Content-Type': 'application/json'
           }
         };
-        console.log(process.env.special);
-        fetch('AIRTABLE URL HERE', options)
+
+        fetch('/api/airtable.js', options)
           .then(response => response.json())
           .then(
             response =>
