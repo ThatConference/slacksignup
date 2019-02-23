@@ -1,6 +1,7 @@
 import nprogress from 'nprogress';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React from 'react';
+import Recaptcha from "react-recaptcha";
 import styled from 'styled-components';
 import { above, below } from '../utilities';
 
@@ -72,6 +73,7 @@ const SignUpForm = ({ className }) => (
       }}
     >
       {({
+        errors,
         values,
         handleChange,
         handleBlur,
@@ -153,6 +155,18 @@ const SignUpForm = ({ className }) => (
               </label>
             </div>
           </div>
+
+          <Recaptcha
+            sitekey="xxxxxxxxxxxxxxxxxxxxxxxxx"
+            render="explicit"
+            theme="dark"
+            verifyCallback={(response) => { setFieldValue("recaptcha", response); }}
+            onloadCallback={() => {}}
+          />
+          {errors.recaptcha
+            && touched.recaptcha && (
+            <p>{errors.recaptcha}</p>
+          )}
 
           <div className="form-submit">
             <button type="submit" disabled={isSubmitting}>

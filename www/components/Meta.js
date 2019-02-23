@@ -28,6 +28,8 @@ const Meta = () => (
       name="twitter:image"
       content="https://www.thatconference.com/images/icons/opengraph.jpg"
     />
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   </Head>
 );
 
