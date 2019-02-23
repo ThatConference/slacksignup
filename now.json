@@ -5,7 +5,7 @@
   "env": {
     "AIRTABLE_URL": "@airtable_url",
     "AIRTABLE_TOKEN": "@airtable_token",
-    "RECAPTCHA_SITE_KEY": "@recaptchaSiteKey"
+    "RECAPTCHA_SITE_KEY": "@recaptchasitekey"
   },
   "builds": [
     { "src": "www/package.json", "use": "@now/next" },
