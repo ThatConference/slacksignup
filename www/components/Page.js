@@ -9,6 +9,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 const StyledPage = styled.div`
+  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+  font-family: 'Roboto', sans-serif;
   background: ${props => props.theme.colors.backgroundColor};
   color: ${props => props.theme.colors.fonts.dark};
 `;
