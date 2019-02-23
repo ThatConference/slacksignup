@@ -4,6 +4,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { above, below } from '../utilities';
 
+// Can use this function to override the fetch call when running locally
+// to test through success and error responses.
+// ---------------------------------------------------------------------
+// const fetch = (url, options) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(function() {
+//       resolve({ json() { return { status: 200, error: false } } });
+//     }, 300);
+//   })
+// }
+
 const SignUpForm = ({ className }) => (
   <div className={className}>
     <Formik
@@ -31,7 +42,7 @@ const SignUpForm = ({ className }) => (
 
         return errors;
       }}
-      onSubmit={(values, { setStatus, setSubmitting }) => {
+      onSubmit={(values, { setStatus, setSubmitting, resetForm }) => {
         setStatus(undefined);
         nprogress.start();
         const payload = {
@@ -55,6 +66,8 @@ const SignUpForm = ({ className }) => (
               response.error && setStatus({ apiError: response.error })
           )
           .then(setSubmitting(false))
+          .then(resetForm())
+          .then(setStatus({ success: 'Thank you for signing up! Watch your email for a invitation to THAT Slack' }))
           .then(nprogress.done());
       }}
     >
@@ -148,6 +161,10 @@ const SignUpForm = ({ className }) => (
 
             {status && status.apiError && (
               <div>API Error: {status.apiError.message}</div>
+            )}
+
+            {status && status.success && (
+              <div>{status.success }</div>
             )}
           </div>
         </Form>
