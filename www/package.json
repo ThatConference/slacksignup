@@ -1,16 +1,41 @@
 {
   "name": "thatSlackSignupWWW",
   "version": "1.0.0",
-  "description": "Slack signup website for THAT Conference",
+  "description": "The Slack signup website for THAT Conference",
   "main": "index.js",
   "scripts": {
     "dev": "next ./ -p 8000",
     "build": "next build ./www",
     "start": "next start ./www",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "alias": "now alias --token=$NOW_TOKEN",
     "now-build": "next build"
   },
-  "author": "",
+  "keywords": [
+    "Slack, node, web, nextjs, now, react, that conference"
+  ],
+  "homepage": "https://thatslack.thatconference.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThatConference/SlackSignupWebsite.git"
+  },
+  "contributors": [
+    {
+      "name": "Clark Sell",
+      "email": "clark@thatconference.com"
+    },
+    {
+      "name": "Mat Bolwerk",
+      "email": "mat@thatconference.com"
+    },
+    {
+      "name": "Sara Gibbons",
+      "email": "sara@thatconference.com"
+    }
+  ],
+  "engines": {
+    "node": "^10"
+  },
   "license": "MIT",
   "dependencies": {
     "formik": "^1.5.1",
