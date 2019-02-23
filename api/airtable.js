@@ -18,17 +18,15 @@ module.exports = async (req, res) => {
       Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`
     };
 
-    axios
+    await axios
       .post(process.env.AIRTABLE_URL, JSON.parse(payload), {
         headers
       })
       .then(r => {
-        // console.log(res);
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end();
+        res.end(r);
       })
       .catch(e => {
-        console.log('ERROR', error);
         e.error && console.log('ERROR', e.error);
         res.writeHead(500, { 'Content-Type': 'text/html' });
         res.end({ error: e.error });

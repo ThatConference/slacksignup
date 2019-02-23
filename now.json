@@ -4,7 +4,8 @@
   "alias": "thatslack.thatconference.com",
   "env": {
     "AIRTABLE_URL": "@airtable_url",
-    "AIRTABLE_TOKEN": "@airtable_token"
+    "AIRTABLE_TOKEN": "@airtable_token",
+    "RECAPTCHA_SITE_KEY": "@recaptchaSiteKey"
   },
   "builds": [
     { "src": "www/package.json", "use": "@now/next" },
