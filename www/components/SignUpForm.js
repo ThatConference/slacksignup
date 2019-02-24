@@ -72,7 +72,7 @@ const SignUpForm = ({ className }) => (
           .then(
             setStatus({
               success:
-                'Thank you for signing up! Watch your email for a invitation to THAT Slack'
+                'Thank you for signing up. Please watch your email for an invitation to THAT Slack.'
             })
           )
           .then(nprogress.done());
@@ -99,6 +99,7 @@ const SignUpForm = ({ className }) => (
             Fill out the form to get an invite to THAT Slack and be a part of
             the community year-round.
           </p>
+          {status && status.success && <div className="form-success"><p className="form-success-title">🎉 Success! 🎉</p><p className="form-success-text">{status.success}</p></div>}
           <div className="form-group">
             <label>
               First Name:<span className="required">*</span>
@@ -181,8 +182,6 @@ const SignUpForm = ({ className }) => (
             {status && status.apiError && (
               <div>API Error: {status.apiError.message}</div>
             )}
-
-            {status && status.success && <div>{status.success}</div>}
           </div>
         </Form>
       )}
@@ -253,6 +252,8 @@ export default styled(SignUpForm)`
   }
 
   .form-submit {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     // Sub Elements
     button {
       margin-top: 15px;
@@ -278,5 +279,29 @@ export default styled(SignUpForm)`
 
   .form-logo img {
     max-width: 100%;
+  }
+
+  .form-success {
+    margin: 30px 0;
+    padding: 15px 15px 5px;
+    background-color: rgba(51, 169, 94, 0.60);
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 #77b389;
+    text-shadow: 2px 2px 0 #619c73;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .form-success-title {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .form-success-text {
+    text-align: center;
+    font-weight: bold;
   }
 `;
