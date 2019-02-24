@@ -18,6 +18,12 @@ import { above, below } from '../utilities';
 //   })
 // }
 
+let recaptchaInstance;
+
+const resetRecaptcha = () => {
+  recaptchaInstance.reset();
+};
+
 const SignUpForm = ({ className }) => (
   <div className={className}>
     <Formik
@@ -25,7 +31,8 @@ const SignUpForm = ({ className }) => (
         firstName: '',
         lastName: '',
         email: '',
-        isPastCamper: false
+        isPastCamper: false,
+        recaptcha: '',
       }}
       validate={values => {
         let errors = {};
@@ -42,6 +49,9 @@ const SignUpForm = ({ className }) => (
           (errors.firstName = 'Please fill in your first name.');
         !values.lastName &&
           (errors.lastName = 'Please fill in your last name.');
+
+        !values.recaptcha &&
+          (errors.recaptcha = 'Please verify your humanity');
 
         return errors;
       }}
@@ -70,6 +80,7 @@ const SignUpForm = ({ className }) => (
           )
           .then(setSubmitting(false))
           .then(resetForm())
+          .then(resetRecaptcha)
           .then(
             setStatus({
               success:
@@ -97,7 +108,9 @@ const SignUpForm = ({ className }) => (
         handleBlur,
         handleSubmit,
         isSubmitting,
-        status
+        status,
+        setFieldValue,
+        touched
       }) => (
         <Form onSubmit={handleSubmit}>
           <div className="form-logo">
@@ -174,16 +187,23 @@ const SignUpForm = ({ className }) => (
             </div>
           </div>
 
-          {/* <Recaptcha
-            sitekey={process.env.RECAPTCHA_SITE_KEY}
-            render="explicit"
-            theme="dark"
-            verifyCallback={response => {
-              setFieldValue('recaptcha', response);
-            }}
-            onloadCallback={() => {}}
-          />
-          {errors.recaptcha && touched.recaptcha && <p>{errors.recaptcha}</p>} */}
+          <div className="form-group">
+            <Recaptcha
+              ref={e => recaptchaInstance = e}
+              render="explicit"
+              sitekey={ process.env.recaptchaSiteKey }
+              onloadCallback={() => {
+                setFieldValue("recaptcha", '');
+              }}
+              verifyCallback={(response) => {
+                setFieldValue("recaptcha", response);
+              }}
+            />
+            {errors.recaptcha
+              && touched.recaptcha && (
+              <span class='required'>{errors.recaptcha}</span>
+            )}
+          </div>
 
           <div className="form-submit">
             <button type="submit" disabled={isSubmitting}>
