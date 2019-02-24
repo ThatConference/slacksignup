@@ -1,4 +1,9 @@
 const axios = require('axios');
+import * as Sentry from '@sentry/node';
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN
+});
 
 module.exports = async (req, res) => {
   console.log('API called');
@@ -23,15 +28,21 @@ module.exports = async (req, res) => {
         headers
       })
       .then(r => {
+        if (r.error) {
+          console.log('ERROR', e.error);
+          Sentry.captureException(e.error);
+        }
+
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(r);
       })
       .catch(e => {
-        e.error && console.log('ERROR', e.error);
+        Sentry.captureException(e);
         res.writeHead(500, { 'Content-Type': 'text/html' });
-        res.end({ error: e.error });
+        res.end(e);
       });
   } else {
+    Sentry.captureMessage('non post request');
     res.writeHead(500, { 'Content-Type': 'text/html' });
     res.end('invalid stuff yo');
   }

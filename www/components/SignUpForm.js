@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import React from 'react';
 import Recaptcha from 'react-recaptcha';
 import styled from 'styled-components';
+import * as Sentry from '@sentry/browser';
 
 import { above, below } from '../utilities';
 
@@ -75,7 +76,18 @@ const SignUpForm = ({ className }) => (
                 'Thank you for signing up! Watch your email for a invitation to THAT Slack'
             })
           )
-          .then(nprogress.done());
+          .then(nprogress.done())
+          .catch(e => {
+            nprogress.done();
+            setSubmitting(false);
+            setStatus({
+              apiError: {
+                message: 'whoa we broke bad!'
+              }
+            });
+
+            Sentry.captureException(e);
+          });
       }}
     >
       {({
