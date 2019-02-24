@@ -1,11 +1,11 @@
 const axios = require('axios');
 import * as Sentry from '@sentry/node';
 
-Sentry.init({
-  dsn: process.env.SENTRY_DSN
-});
-
 module.exports = async (req, res) => {
+  Sentry.init({
+    dsn: process.env.SENTRY_DSN
+  });
+
   console.log('API called');
   if (req.method === 'POST') {
     let payload = [];
