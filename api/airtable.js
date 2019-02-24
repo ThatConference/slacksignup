@@ -36,13 +36,13 @@ module.exports = async (req, res) => {
             }
 
             res.writeHead(200, { 'Content-Type': 'application/json' });
-            res.write(r);
+            res.write(JSON.stringify(r));
             res.end();
           })
           .catch(e => {
             Sentry.captureException(e);
             res.writeHead(500, { 'Content-Type': 'text/html' });
-            res.write(e);
+            res.write(JSON.stringify(e));
             res.end();
           });
       });
