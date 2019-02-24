@@ -30,13 +30,23 @@ module.exports = async (req, res) => {
             headers
           })
           .then(r => {
+            let responsePayload = {};
             if (r.error) {
               console.log('ERROR', e.error);
               Sentry.captureException(e.error);
+              responsePayload = {
+                error: e.error
+              };
             }
 
+            responsePayload = {
+              statusText: r.statusText,
+              statusCode: r.status,
+              ...responsePayload
+            };
+
             res.writeHead(r.status, { 'Content-Type': 'application/json' });
-            res.write(JSON.stringify({ status: r.statusText }));
+            res.write(JSON.stringify(responsePayload));
             res.end();
           })
           .catch(e => {
