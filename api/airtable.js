@@ -1,38 +1,65 @@
 const axios = require('axios');
+const Sentry = require('@sentry/node');
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN
+});
 
 module.exports = async (req, res) => {
   console.log('API called');
   if (req.method === 'POST') {
     let payload = [];
-    await req
+    req
+      .on('error', err => {
+        Sentry.captureException(err);
+      })
       .on('data', chunk => {
         payload.push(chunk);
       })
       .on('end', () => {
         payload = Buffer.concat(payload).toString();
         console.log('incoming payload:', payload);
-      });
 
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`
-    };
+        const headers = {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`
+        };
 
-    await axios
-      .post(process.env.AIRTABLE_URL, JSON.parse(payload), {
-        headers
-      })
-      .then(r => {
-        res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(r);
-      })
-      .catch(e => {
-        e.error && console.log('ERROR', e.error);
-        res.writeHead(500, { 'Content-Type': 'text/html' });
-        res.end({ error: e.error });
+        return axios
+          .post(process.env.AIRTABLE_URL, JSON.parse(payload), {
+            headers
+          })
+          .then(r => {
+            let responsePayload = {};
+            if (r.error) {
+              console.log('ERROR', e.error);
+              Sentry.captureException(e.error);
+              responsePayload = {
+                error: e.error
+              };
+            }
+
+            responsePayload = {
+              statusText: r.statusText,
+              statusCode: r.status,
+              ...responsePayload
+            };
+
+            res.writeHead(r.status, { 'Content-Type': 'application/json' });
+            res.write(JSON.stringify(responsePayload));
+            res.end();
+          })
+          .catch(e => {
+            Sentry.captureException(e);
+            res.writeHead(r.status, { 'Content-Type': 'text/html' });
+            res.write(JSON.stringify(e));
+            res.end();
+          });
       });
   } else {
+    Sentry.captureMessage('non post request');
     res.writeHead(500, { 'Content-Type': 'text/html' });
-    res.end('invalid stuff yo');
+    res.write('invalid stuff yo');
+    res.end();
   }
 };

@@ -36,6 +36,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "@sentry/node": "^4.6.3",
     "axios": "^0.18.0"
   },
   "devDependencies": {

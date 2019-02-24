@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
+import SentryBoundry from '../components/SentryBoundry';
 import GlobalStyle from '../styles/globalStyle';
 import baseTheme from '../styles/baseTheme';
 
@@ -32,19 +33,21 @@ const InnerPage = styled.div`
 class Page extends Component {
   render() {
     return (
-      <ThemeProvider theme={baseTheme}>
-        <Fragment>
-          <StyledPage>
-            <GlobalStyle />
-            <Meta />
-            <CorePage>
-              <Header />
-              <InnerPage>{this.props.children}</InnerPage>
-              <Footer modifiers="site" />
-            </CorePage>
-          </StyledPage>
-        </Fragment>
-      </ThemeProvider>
+      <SentryBoundry>
+        <ThemeProvider theme={baseTheme}>
+          <Fragment>
+            <StyledPage>
+              <GlobalStyle />
+              <Meta />
+              <CorePage>
+                <Header />
+                <InnerPage>{this.props.children}</InnerPage>
+                <Footer modifiers="site" />
+              </CorePage>
+            </StyledPage>
+          </Fragment>
+        </ThemeProvider>
+      </SentryBoundry>
     );
   }
 }
