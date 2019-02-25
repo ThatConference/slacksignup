@@ -1,3 +1,6 @@
 module.exports = {
-  target: 'serverless'
+  target: 'serverless',
+  env: {
+    recaptchaSiteKey: '6LesmZMUAAAAAGgGNT3Svhmogowbh0u6xXgYS6Ru'
+  }
 };
