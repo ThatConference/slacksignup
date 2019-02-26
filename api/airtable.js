@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
         payload.push(chunk);
       })
       .on('end', () => {
-        payload = Buffer.concat(payload).toString();
+        payload = JSON.parse(Buffer.concat(payload).toString());
         console.log('incoming payload:', payload);
 
         const headers = {
@@ -25,8 +25,21 @@ module.exports = async (req, res) => {
           Authorization: `Bearer ${process.env.AIRTABLE_TOKEN}`
         };
 
+        /* example payload 
+          {
+            "fields": {
+              "firstName":"",
+              "lastName":"",
+              "email":"","
+              isPastCamper":false,
+              "recaptcha":""
+          }
+        */
+
+        payload.fields.recaptcha && delete payload.fields.recaptcha;
+
         return axios
-          .post(process.env.AIRTABLE_URL, JSON.parse(payload), {
+          .post(process.env.AIRTABLE_URL, payload, {
             headers
           })
           .then(r => {
@@ -51,14 +64,14 @@ module.exports = async (req, res) => {
           })
           .catch(e => {
             Sentry.captureException(e);
-            res.writeHead(r.status, { 'Content-Type': 'text/html' });
-            res.write(JSON.stringify(e));
+            res.writeHead(500, { 'Content-Type': 'text/html' });
+            res.write(JSON.stringify(e.message));
             res.end();
           });
       });
   } else {
     Sentry.captureMessage('non post request');
-    res.writeHead(500, { 'Content-Type': 'text/html' });
+    res.writeHead(405, { 'Content-Type': 'text/html' });
     res.write('invalid stuff yo');
     res.end();
   }
