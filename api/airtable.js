@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
           .then(r => {
             let responsePayload = {};
             if (r.error) {
-              console.log('ERROR', e.error);
+              console.error('ERROR', e.error);
               Sentry.captureException(e.error);
               responsePayload = {
                 error: e.error
@@ -63,13 +63,16 @@ module.exports = async (req, res) => {
             res.end();
           })
           .catch(e => {
+            console.error(payload);
             Sentry.captureException(e);
+
             res.writeHead(500, { 'Content-Type': 'text/html' });
             res.write(JSON.stringify(e.message));
             res.end();
           });
       });
   } else {
+    console.error('non post request');
     Sentry.captureMessage('non post request');
     res.writeHead(405, { 'Content-Type': 'text/html' });
     res.write('invalid stuff yo');
