@@ -84,7 +84,7 @@ const SignUpForm = ({ className }) => (
           .then(
             setStatus({
               success:
-                'Thank you for signing up. Please watch your email for an invitation to THAT Slack.'
+                'Thank you for signing up. Your request has been submitted and is under review. Please watch your email for an invitation to THAT Slack.'
             })
           )
           .then(nprogress.done())
