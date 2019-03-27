@@ -5,7 +5,8 @@
   "env": {
     "AIRTABLE_URL": "@airtable_url",
     "AIRTABLE_TOKEN": "@airtable_token",
-    "SENTRY_DSN": "https://6b3fd4fd6d754b18aa36f99e6406d7cd@sentry.io/1401140"
+    "SENTRY_DSN": "https://6b3fd4fd6d754b18aa36f99e6406d7cd@sentry.io/1401140",
+    "recaptchaSiteKey": "6Lfdl5MUAAAAAK6GKcrUfMHSV7UoSs_RLm2t5TN9"
   },
   "builds": [
     { "src": "www/package.json", "use": "@now/next" },

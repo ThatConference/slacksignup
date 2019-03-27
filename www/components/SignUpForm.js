@@ -189,6 +189,7 @@ const SignUpForm = ({ className }) => (
           </div>
 
           <div className="form-group">
+            {console.log(process)}
             <Recaptcha
               ref={e => recaptchaInstance = e}
               render="explicit"
