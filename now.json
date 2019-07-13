@@ -7,7 +7,8 @@
     "AIRTABLE_TOKEN": "@airtable_token",
     "SENTRY_DSN": "https://6b3fd4fd6d754b18aa36f99e6406d7cd@sentry.io/1401140",
     "SLACK_URL": "@slack_url",
-    "SLACK_TOKEN": "@slack_token"
+    "SLACK_TOKEN": "@slack_token",
+    "APPROVAL_REQUIRED": "@approval_required"
   },
   "builds": [
     { "src": "www/package.json", "use": "@now/next" },
