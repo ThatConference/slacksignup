@@ -87,7 +87,7 @@ const SignUpForm = ({ className }) => (
           .then(response => response.json())
           .then(
             response =>
-              response.error && setStatus({ apiError: response.error })
+              response.error && setStatus({ apiError: {message: response.error} })
           )
           .then(setSubmitting(false))
           .then(resetForm())
