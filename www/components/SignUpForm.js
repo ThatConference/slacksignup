@@ -71,8 +71,19 @@ const SignUpForm = ({ className }) => (
             'Content-Type': 'application/json'
           }
         };
+        let endpoint = ''
+        let successMessage = ''
 
-        fetch('/api/airtable.js', options)
+        if (process.env.approvalRequired) {
+          endpoint = 'airtable.js'
+          successMessage = 'Thank you for signing up. Your request has been submitted and is under review. Please watch your email for an invitation to THAT Slack.'
+        }
+        else {
+          endpoint = 'slack.js'
+          successMessage = 'Thank you for signing up. Please watch your email for an invitation to THAT Slack.'
+        }
+
+        fetch(`/api/${endpoint}`, options)
           .then(response => response.json())
           .then(
             response =>
@@ -83,8 +94,7 @@ const SignUpForm = ({ className }) => (
           .then(resetRecaptcha)
           .then(
             setStatus({
-              success:
-                'Thank you for signing up. Your request has been submitted and is under review. Please watch your email for an invitation to THAT Slack.'
+              success: successMessage
             })
           )
           .then(nprogress.done())
@@ -202,7 +212,7 @@ const SignUpForm = ({ className }) => (
             />
             {errors.recaptcha
               && touched.recaptcha && (
-              <span class='required'>{errors.recaptcha}</span>
+              <span className='required'>{errors.recaptcha}</span>
             )}
           </div>
 
