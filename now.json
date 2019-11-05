@@ -3,12 +3,13 @@
   "name": "thatSlack",
   "alias": "thatslack.thatconference.com",
   "env": {
-    "AIRTABLE_URL": "@airtable_url",
-    "AIRTABLE_TOKEN": "@airtable_token",
-    "SENTRY_DSN": "https://6b3fd4fd6d754b18aa36f99e6406d7cd@sentry.io/1401140",
-    "SLACK_URL": "@slack_url",
-    "SLACK_TOKEN": "@slack_token",
-    "APPROVAL_REQUIRED": "@approval_required"
+    "AIRTABLE_URL": "@thatslack_airtable_url",
+    "AIRTABLE_TOKEN": "@thatslack_airtable_token",
+    "SENTRY_DSN": "@thatslack_sentry_dsn",
+    "SLACK_URL": "@thatslack_slack_url",
+    "SLACK_TOKEN": "@thatslack_slack_token",
+    "APPROVAL_REQUIRED": "@thatslack_approval_required",
+    "RECAPTCHA_SITE_KEY": "@thatslack_recaptcha_site_key"
   },
   "builds": [
     { "src": "www/package.json", "use": "@now/next" },
