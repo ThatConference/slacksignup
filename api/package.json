@@ -1,5 +1,5 @@
 {
-  "name": "thatSlackSignupApi",
+  "name": "that-slack-sign-up_api",
   "version": "1.0.0",
   "description": "Slack signup api for THAT Conference",
   "main": "index.js",
