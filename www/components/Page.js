@@ -10,8 +10,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 const StyledPage = styled.div`
-  @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-  font-family: 'Roboto', sans-serif;
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans');
+  font-family: 'Open Sans', sans-serif;
   background: ${props => props.theme.colors.backgroundColor};
   color: ${props => props.theme.colors.fonts.dark};
 `;
@@ -21,7 +21,7 @@ const CorePage = styled.div`
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-gap: 10px;
-  background-color: #f4e9d6;
+  background-color: #ffffff;
 `;
 
 const InnerPage = styled.div`

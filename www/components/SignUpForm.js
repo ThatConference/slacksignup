@@ -245,13 +245,13 @@ export default styled(SignUpForm)`
   ${above.sm`
     margin: 7.5rem 0;
     padding: 5rem 6rem 6rem;
-    border: 4px solid #e6d6bc;
+    border: 4px solid #1F2A63;
   `}
 
   // Sub Elements
   h1 {
     margin-bottom: 0;
-    color: #627f78;
+    color: #26529A;
     font-weight: bold;
   }
   p {
@@ -301,17 +301,18 @@ export default styled(SignUpForm)`
       margin-top: 15px;
       padding: 15px;
       width: 100%;
-      background-color: #829641;
-      color: #f1e1c0;
-      font-size: 20px;
-      font-weight: 700;
-      border: none;
-      border-bottom: 5px solid #616a27;
+      background-color: #FFFFFF;
+      color: #26529A;
+      font-size: 16px;
+      font-weight: 600;
+      border: 2px solid #26529A;
+      border-radius: .5rem;
       cursor: pointer;
       // Pseudos
       &:focus,
       &:hover {
-        background-color: #798b3c;
+        background-color: #26529A;
+        color: #FFFFFF;
       }
       &:active {
         border: none;

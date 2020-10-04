@@ -6,7 +6,7 @@ const Header = ({ className }) => (
       <a href="//www.thatconference.com">
         <img
           className="header-logo"
-          src="/static/images/TC-Head-Logo.png"
+          src="/static/images/TC-Head-Logo-Red.png"
           alt="THAT Conference"
         />
       </a>
@@ -20,7 +20,7 @@ export default styled(Header)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #5e4530;
+  background-color: #121B46;
   border-bottom: 1px solid #4c3e30;
 
   .header-container {
