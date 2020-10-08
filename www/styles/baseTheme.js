@@ -1,33 +1,38 @@
 const baseTheme = {
   colors: {
-    backgroundColor: '#f4e9d6',
+    backgroundColor: '#ffffff',
 
-    primary: '#f5a637',
-    secondary: '#6c757d',
+    primary: '#1F2A63',
+    secondary: '#16215A',
+    tertiary: '#F74646',
+    highlight: '#FF834D',
+    darkBlue: '#121B46',
+
+    thatBlue: '#26529A',
+    teal: '#05d69e',
+    purple: '#5E1B5E',
+    gray: '#555555',
+    mediumGray: '#d3d3d3',
+    mediumLightGray: '#fcfcfc;',
+    lightGray: '#FAFAFA',
+    darkGray: '#707070',
+    white: '#FFFFFF',
+    offWhite: '#F7F7F7',
+    transparent: 'transparent',
+
+    placeholderGray: '#ededed',
+
+    // standard user messaging
     success: '#28a745',
     info: '#17a2b8',
     warning: '#ffc107',
     danger: '#dc3545',
-    light: '#f8f9fa',
-    dark: '#343a40',
-
-    orange: '#fd7e14',
-    white: '#fff',
-    black: '#393939',
-    brown: '#5e4530',
 
     fonts: {
-      light: '#777',
-      dark: '#8b7e64',
-      tan: '#f1e1c0'
+      light: '#FFFFFF',
+      dark: '#555555',
     },
-
-    social: {
-      twitter: '#fd7e14',
-      facebook: '#fd7e14',
-      instagram: '#fd7e14'
-    }
-  }
+  },
 };
 
 export default baseTheme;

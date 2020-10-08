@@ -3,8 +3,8 @@ import { applyStyleModifiers } from 'styled-components-modifiers';
 
 const FOOTER_MODIFIERS = {
   site: ({ theme }) => `
-    background-color: ${theme.colors.brown};
-    color: ${theme.colors.fonts.tan};
+    background-color: #121B46;
+    color: #FFFFFF;
   `
 };
 
